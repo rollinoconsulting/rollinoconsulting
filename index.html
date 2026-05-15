@@ -532,26 +532,6 @@ footer{background:#1B2A4A;border-top:1px solid rgba(255,255,255,0.08);padding:1.
 </section>
 
 
-<section class="t-sec" id="t-interview">
-  <img src="" data-img="rc_logo" alt="RC" class="t-logo">
-  <div class="t-title">Intervista<br><em>Canale Italia</em></div>
-  <div class="t-bar"></div>
-</section>
-
-
-<!-- INTERVIEW -->
-<section id="interview">
-  <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.8rem">Media · 14 Maggio 2026</div>
-  <h2 style="color:#fff;margin-bottom:0.5rem;font-size:clamp(1.8rem,3vw,2.8rem)">Intervista Canale Italia<br><em style="color:rgba(255,255,255,0.6);font-style:normal">14 Maggio 2026</em></h2>
-  <p style="font-size:0.88rem;color:rgba(255,255,255,0.5);margin-bottom:2rem;max-width:560px;line-height:1.6">Brand strategy, licensing globale e il ponte Italia–Nordics.</p>
-  <div style="width:100%;max-width:720px;background:#000;border-radius:4px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.5)">
-    <video controls style="width:100%;display:block;max-height:380px">
-      <source src="interview.mp4" type="video/mp4">
-    </video>
-  </div>
-</section>
-
-
 <section class="t-sec" id="t-contact">
   <img src="" data-img="rc_logo" alt="RC" class="t-logo">
   <div class="t-title">Ready to talk<br><em>To The Point?</em></div>
@@ -664,7 +644,14 @@ try{posts=JSON.parse(localStorage.getItem('rc_posts')||'[]');}catch(e){}
 function renderFeed(){
   var el=document.getElementById('upd-list');
   if(!posts.length){el.innerHTML='<div class="empty">No updates yet. Add your first post via the Admin panel.</div>';return;}
-  el.innerHTML=posts.map(function(p){return '<div class="upd-item"'+(p.link?' onclick="window.open(''+p.link+'','_blank')"':'')+"><div><span class='uty'>"+p.type+"</span><br><span class='udt'>"+p.date+"</span></div><div><h4 class='uti'>"+p.title+"</h4><div class='uds'>"+p.desc+"</div></div><div class='uarr'>"+(p.link?'→':'')+'</div></div>';}).join('');
+  el.innerHTML=posts.map(function(p){
+    var item='<div class="upd-item"';
+    if(p.link)item+=' onclick="window.open(this.dataset.link,\'_blank\')" data-link="'+p.link+'"';
+    item+='><div><span class="uty">'+p.type+'</span><br><span class="udt">'+p.date+'</span></div>';
+    item+='<div><h4 class="uti">'+p.title+'</h4><div class="uds">'+p.desc+'</div></div>';
+    item+='<div class="uarr">'+(p.link?'→':'')+'</div></div>';
+    return item;
+  }).join('');
 }
 function renderAdmList(){
   var el=document.getElementById('adm-list');

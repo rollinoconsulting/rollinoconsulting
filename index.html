@@ -105,9 +105,9 @@ p.ap{font-size:1rem;color:var(--muted);margin-bottom:0.7rem;line-height:1.55}
 .logo-cell img{max-height:100%;width:auto;object-fit:contain}
 
 /* SERVICES - fullpage 2x2 */
-#services{display:block;position:relative}
-.svc-header{position:absolute;top:64px;left:0;right:0;padding:1.5rem 3rem 0.8rem;background:#fff;z-index:1}
-.svc-grid{position:absolute;top:155px;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px;background:var(--border)}
+#services{display:flex;flex-direction:column}
+.svc-header{padding:1.5rem 3rem 0.8rem;padding-top:calc(64px + 1rem);flex-shrink:0}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);flex:1;min-height:0}
 .svc-card{background:var(--bg);padding:1.5rem 1.8rem;display:flex;flex-direction:column;gap:0.5rem}
 .svc-card:nth-child(1),.svc-card:nth-child(2){border-top:3px solid var(--gold)}
 .svc-num{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1}
